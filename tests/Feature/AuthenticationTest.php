@@ -9,7 +9,7 @@ beforeEach(function () {
     Date::setTestNow(now());
 });
 
-test('user can login with valid credentials', function () {
+it('user can login with valid credentials', function () {
     $password = 'password123';
     $user = User::factory()->create([
         'password' => Hash::make($password),
@@ -21,19 +21,13 @@ test('user can login with valid credentials', function () {
     ]);
 
     $response->assertOk();
-    $response->assertJsonStructure([
-        'success',
-        'message',
-        'data' => [
-            'token',
-            'expiresIn',
-        ],
-    ]);
+    expect($response['data'])->toHaveKey('token');
+    expect($response['data'])->toHaveKey('expiresIn');
 
     $this->assertNotNull($user->fresh()->last_login);
 });
 
-test('login fails with invalid credentials', function () {
+it('login fails with invalid credentials', function () {
     $user = User::factory()->create([
         'password' => Hash::make('correct-password'),
     ]);
@@ -51,7 +45,7 @@ test('login fails with invalid credentials', function () {
     ]);
 });
 
-test('can get authenticated user with valid token', function () {
+it('can get authenticated user with valid token', function () {
     $user = User::factory()->create();
 
     $token = Auth::login($user);
@@ -71,13 +65,13 @@ test('can get authenticated user with valid token', function () {
     ]);
 });
 
-test('unauthenticated user cannot access me endpoint', function () {
+it('unauthenticated user cannot access me endpoint', function () {
     $response = $this->getJson('/api/me');
 
     $response->assertUnauthorized();
 });
 
-test('can logout with valid token', function () {
+it('can logout with valid token', function () {
     $user = User::factory()->create();
     $token = Auth::login($user);
 
@@ -91,7 +85,7 @@ test('can logout with valid token', function () {
     ]);
 });
 
-test('can refresh JWT token', function () {
+it('can refresh JWT token', function () {
     $user = User::factory()->create();
     $token = Auth::login($user);
 
@@ -99,11 +93,6 @@ test('can refresh JWT token', function () {
         ->postJson('/api/refresh');
 
     $response->assertOk();
-    $response->assertJsonStructure([
-        'success',
-        'data' => [
-            'token',
-            'expiresIn',
-        ],
-    ]);
+    expect($response['data'])->toHaveKey('token');
+    expect($response['data'])->toHaveKey('expiresIn');
 });

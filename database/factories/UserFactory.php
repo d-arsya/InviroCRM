@@ -12,7 +12,7 @@ class UserFactory extends Factory
         return [
             'email' => fake()->email(),
             'password' => Hash::make(fake()->text()),
-            'last_login' => now(),
+            'last_login' => null,
         ];
     }
 }
