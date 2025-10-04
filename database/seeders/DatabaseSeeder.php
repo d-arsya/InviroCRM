@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             WhatsappTokenSeeder::class,
+            MessageSeeder::class,
         ]);
     }
 }
