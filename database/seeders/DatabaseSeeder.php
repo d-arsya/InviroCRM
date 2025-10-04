@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             WhatsappTokenSeeder::class,
             MessageSeeder::class,
+            ConfigSeeder::class,
         ]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappTokenController;
@@ -16,6 +17,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('me', [AuthController::class, 'me']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::put('config', [ConfigController::class, 'update']);
     Route::apiResource('users', UserController::class);
     Route::apiResource('tokens', WhatsappTokenController::class)->only('index', 'update', 'show');
     Route::apiResource('templates', MessageController::class);
