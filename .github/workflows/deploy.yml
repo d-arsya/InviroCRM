@@ -1,19 +1,22 @@
 name: Deploy to Arenhost
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Run Tests"]
+    types:
+      - completed
 
 jobs:
-  build:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: INVIRO
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build on Arenhost
+      - name: Deploy on Arenhost server via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.HOST }}
@@ -23,5 +26,6 @@ jobs:
             cd /home/pondoknu/disyfa.cloud/inviro-be
             git restore .
             git pull
-            ../../composer update
+            rm -rf vendor
+            ../../composer install
             php artisan migrate:fresh --seed
