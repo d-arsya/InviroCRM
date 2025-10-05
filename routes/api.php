@@ -23,15 +23,17 @@ Route::middleware('auth:api')->group(function () {
     Route::get('chart', [DashboardController::class, 'chart']);
     Route::get('card/{date}', [DashboardController::class, 'card']);
     Route::get('me', [AuthController::class, 'me']);
-    Route::get('default-config', [ConfigController::class, 'default']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::prefix('config')->group(function () {
-        Route::get('sending', [ConfigController::class, 'getSending']);
-        Route::get('spreadsheet', [ConfigController::class, 'spreadsheet']);
-        Route::put('sending', [ConfigController::class, 'sending']);
-        Route::put('sync', [ConfigController::class, 'sync']);
-        Route::put('link', [ConfigController::class, 'link']);
+    Route::controller(ConfigController::class)->group(function () {
+        Route::get('default-config', 'default');
+        Route::prefix('config')->group(function () {
+            Route::get('sending', 'getSending');
+            Route::get('spreadsheet', 'spreadsheet');
+            Route::put('sending', 'sending');
+            Route::put('sync', 'sync');
+            Route::put('link', 'link');
+        });
     });
     Route::apiResource('users', UserController::class);
     Route::apiResource('tokens', WhatsappTokenController::class)->only('index', 'update', 'show');
