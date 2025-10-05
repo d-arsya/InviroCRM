@@ -73,7 +73,7 @@ class CustomerController extends Controller
         });
         $isValid = $this->isWhatsapp($customer->phone);
         if ($isValid) {
-            $message = $customer->message->text;
+            $message = $customer->message_value['text'];
             $message = str_replace('{nama}', $customer->name, $message);
             $message = str_replace('\n', "\n", $message);
             $sended = $this->send($customer->phone, $message);
