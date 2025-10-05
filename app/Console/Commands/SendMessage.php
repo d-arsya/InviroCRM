@@ -50,7 +50,7 @@ class SendMessage extends Command
                 $this->send($customer->phone, $message, $delay);
                 $delay += $send_interval;
                 if ($sended) {
-                    $customer->update(['status' => 'sended']);
+                    $customer->update(['status' => 'sended', 'send' => now()->toDateString()]);
                 } else {
                     $customer->update(['status' => 'failed']);
                 }
