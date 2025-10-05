@@ -14,7 +14,7 @@ class ConfigSeeder extends Seeder
     {
         DB::table('config')->insert(['key' => 'days_after', 'value' => 3]);
         DB::table('config')->insert(['key' => 'send_interval', 'value' => 15]);
-        DB::table('config')->insert(['key' => 'spreadsheet_id', 'value' => '1bdkPaMiAbaha3VsD-ydQIYkVWLeWlGXHiFIphbcf5l4']);
+        DB::table('config')->insert(['key' => 'spreadsheet_id', 'value' => env('SPREADSHEET_ID')]);
         DB::table('config')->insert(['key' => 'sync_time', 'value' => '16:00']);
     }
 }
