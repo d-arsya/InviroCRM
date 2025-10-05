@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Message;
 use App\Traits\ApiResponder;
 use Dedoc\Scramble\Attributes\Group;
 use Illuminate\Http\Request;
@@ -96,5 +97,17 @@ class ConfigController extends Controller
             'hour' => $request->hour,
             'minute' => $request->minute,
         ]);
+    }
+
+    /**
+     * Get default config
+     */
+    #[Group('Config')]
+    public function default()
+    {
+        $title = Message::whereDefault(true)->first()->title;
+        $days = (int) DB::table('config')->whereKey('days_after')->first()->value;
+
+        return $this->success(['days' => $days, 'title' => $title]);
     }
 }

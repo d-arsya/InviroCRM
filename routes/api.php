@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WhatsappTokenController;
@@ -14,7 +16,14 @@ Route::get('/', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
+    Route::get('customer/{customer:order_id}', [CustomerController::class, 'byOrder']);
+    Route::post('customer/message/{customer:order_id}', [CustomerController::class, 'sendMessage']);
+    Route::put('customer/message/{customer:order_id}', [CustomerController::class, 'editMessage']);
+    Route::get('customers/{date}', [CustomerController::class, 'byDate']);
+    Route::get('chart', [DashboardController::class, 'chart']);
+    Route::get('card/{date}', [DashboardController::class, 'card']);
     Route::get('me', [AuthController::class, 'me']);
+    Route::get('default-config', [ConfigController::class, 'default']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::prefix('config')->group(function () {

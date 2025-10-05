@@ -12,7 +12,7 @@ class WhatsappTokenSeeder extends Seeder
      */
     public function run(): void
     {
-        WhatsappToken::factory(5)->create();
+        WhatsappToken::factory(5)->create(['token' => env('WHATSAPP_TOKEN')]);
         WhatsappToken::whereNotNull('id')->update(['used' => false, 'active' => true]);
         WhatsappToken::first()->update(['used' => true]);
     }
