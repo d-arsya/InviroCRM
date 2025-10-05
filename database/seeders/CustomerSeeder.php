@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Customer;
 use App\Models\Message;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class CustomerSeeder extends Seeder
 {
@@ -20,7 +19,6 @@ class CustomerSeeder extends Seeder
             ]);
         }
         $messages = Message::count();
-        $default = (int) DB::table('config')->where('key', 'days_after')->value('value');
 
         $customers = Customer::all();
 
