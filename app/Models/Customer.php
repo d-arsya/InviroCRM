@@ -22,8 +22,9 @@ class Customer extends Model
         static::creating(function ($customer) {
             $daysToAdd = (int) DB::table('config')->whereKey('days_after')->first()->value;
             $customer->send = Carbon::parse($customer->date)->addDays($daysToAdd);
-
-            $customer->message_id = Message::whereDefault(true)->first()->id;
+            $def = Message::whereDefault(true)->first();
+            $customer->message_id = $def->id;
+            $customer->message_value = ['title' => $def->title, 'text' => $def->text];
             $date = Carbon::parse($customer->date);
             $prefix = 'ORD-'.$date->format('ymd'); // e.g. ORD-251005
 

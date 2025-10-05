@@ -16,15 +16,19 @@ Route::get('/', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
-    Route::get('customer/{customer:order_id}', [CustomerController::class, 'byOrder']);
-    Route::post('customer/message/{customer:order_id}', [CustomerController::class, 'sendMessage']);
-    Route::put('customer/message/{customer:order_id}', [CustomerController::class, 'editMessage']);
-    Route::get('customers/{date}', [CustomerController::class, 'byDate']);
     Route::get('chart', [DashboardController::class, 'chart']);
     Route::get('card/{date}', [DashboardController::class, 'card']);
-    Route::get('me', [AuthController::class, 'me']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::controller(CustomerController::class)->group(function () {
+        Route::get('customer/{customer:order_id}', 'byOrder');
+        Route::post('customer/message/{customer:order_id}', 'sendMessage');
+        Route::put('customer/message/{customer:order_id}', 'editMessage');
+        Route::get('customers/{date}', 'byDate');
+    });
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('me', 'me');
+        Route::post('logout', 'logout');
+        Route::post('refresh', 'refresh');
+    });
     Route::controller(ConfigController::class)->group(function () {
         Route::get('default-config', 'default');
         Route::prefix('config')->group(function () {

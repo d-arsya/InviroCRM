@@ -77,11 +77,11 @@ class CustomerController extends Controller
             $message = str_replace('{nama}', $customer->name, $message);
             $message = str_replace('\n', "\n", $message);
             $sended = $this->send($customer->phone, $message);
-        }
-        if ($sended) {
-            $customer->update(['status' => 'sended']);
+            if ($sended) {
+                $customer->update(['status' => 'sended']);
 
-            return $this->success(null);
+                return $this->success(null);
+            }
         }
 
         return $this->error(null);
