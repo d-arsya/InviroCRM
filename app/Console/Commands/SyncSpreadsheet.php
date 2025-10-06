@@ -50,8 +50,14 @@ class SyncSpreadsheet extends Command
         $data = $this->getByName($spreadsheetId, $sheetName);
 
         foreach ($data as $item) {
-            // $this->info(json_encode($item["products"]));
-            Customer::create($item);
+            $customer = Customer::create($item);
+            $prod = $customer->products;
+            $prod = json_encode($prod);
+            $prod = str_replace('"[', '[', $prod);
+            $prod = str_replace(']"', ']', $prod);
+            $prod = str_replace('\\', '', $prod);
+            $prod = json_decode($prod);
+            $customer->update(['products' => $prod]);
         }
         $this->info('Berhasil memasukkan '.count($data).' data customer');
     }
