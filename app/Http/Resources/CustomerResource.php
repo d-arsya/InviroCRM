@@ -16,7 +16,11 @@ class CustomerResource extends JsonResource
     {
         $data = parent::toArray($request);
 
-        if (isset($data['products']) && is_string($data['products'])) {
+        if (is_string($data['products'])) {
+            $data['products'] = str_replace('"[', '', $data['products']);
+            $data['products'] = str_replace(']"', '', $data['products']);
+            $data['products'] = str_replace('\\', '', $data['products']);
+
             $decoded = json_decode($data['products'], true);
             if (json_last_error() === JSON_ERROR_NONE) {
                 $data['products'] = $decoded;
