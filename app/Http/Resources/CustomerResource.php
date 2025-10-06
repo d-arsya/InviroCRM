@@ -14,6 +14,15 @@ class CustomerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $data = parent::toArray($request);
+
+        if (isset($data['products']) && is_string($data['products'])) {
+            $decoded = json_decode($data['products'], true);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                $data['products'] = $decoded;
+            }
+        }
+
+        return $data;
     }
 }
