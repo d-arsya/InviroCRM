@@ -133,7 +133,7 @@ trait Spreadsheet
                     ];
                 }
             }
-            $result['products'] = $result['products'];
+            $result['products'] = json_encode($result['products'], JSON_UNESCAPED_UNICODE);
             $data[$id] = $result;
         }
         $data = $data->filter(function ($cust) {
