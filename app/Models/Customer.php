@@ -11,7 +11,7 @@ class Customer extends Model
 {
     use HasFactory;
 
-    protected $casts = ['message_value' => 'json', 'products' => 'json'];
+    protected $casts = ['message_value' => 'json', 'products' => 'array'];
 
     protected $hidden = ['created_at', 'updated_at'];
 
