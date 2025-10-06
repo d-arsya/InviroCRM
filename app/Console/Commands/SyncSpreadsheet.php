@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Customer;
 use App\Traits\Spreadsheet;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 
 class SyncSpreadsheet extends Command
@@ -50,15 +51,9 @@ class SyncSpreadsheet extends Command
         $data = $this->getByName($spreadsheetId, $sheetName);
 
         foreach ($data as $item) {
-            $customer = Customer::create($item);
-            $prod = $customer->products;
-            $prod = json_encode($prod);
-            $prod = str_replace('"[', '[', $prod);
-            $prod = str_replace(']"', ']', $prod);
-            $prod = str_replace('\\', '', $prod);
-            $prod = json_decode($prod);
-            $customer->update(['products' => $prod]);
+            Customer::create($item);
         }
         $this->info('Berhasil memasukkan '.count($data).' data customer');
+        Artisan::call('sheet:decode');
     }
 }
