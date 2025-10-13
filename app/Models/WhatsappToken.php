@@ -9,7 +9,7 @@ class WhatsappToken extends Model
 {
     use HasFactory;
 
-    protected $visible = ['token', 'used', 'active'];
+    protected $visible = ['id', 'token', 'used', 'active'];
 
     protected $fillable = ['token'];
 
