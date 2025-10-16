@@ -23,6 +23,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('customer/message/{customer:order_id}', 'sendMessage');
         Route::put('customer/message/{customer:order_id}', 'editMessage');
         Route::get('customers/messages', 'messages');
+        Route::get('customers/messages/today', 'todayMessages');
         Route::get('customers/{date}', 'byDate');
     });
     Route::controller(AuthController::class)->group(function () {

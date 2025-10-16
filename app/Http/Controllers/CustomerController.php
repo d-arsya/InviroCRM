@@ -40,6 +40,17 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get all message will send today (all status)
+     */
+    #[Group('Customer')]
+    public function todayMessages()
+    {
+        $customers = Customer::with('message')->where('send', now()->toDateString())->get();
+
+        return $this->success(CustomerResource::collection($customers));
+    }
+
+    /**
      * Get customer data by order ID
      *
      * @param  string  $order_id  ex. ORD-250910-001
