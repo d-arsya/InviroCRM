@@ -33,7 +33,7 @@ class CustomerSeeder extends Seeder
                 'text' => $message->text,
                 'title' => $message->title,
             ] : [];
-            $customer->update(['status' => fake()->randomElement(['sended', 'failed']), 'message_value' => $messageValue]);
+            $customer->update(['status' => fake()->randomElement(['sended', 'failed', 'waiting']), 'message_value' => $messageValue]);
         }
     }
 }

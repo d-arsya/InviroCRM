@@ -35,7 +35,7 @@ class SendMessage extends Command
         $days_after = (int) DB::table('config')->whereKey('days_after')->first()->value;
         $send_interval = (int) DB::table('config')->whereKey('send_interval')->first()->value;
         $cutoffDate = Carbon::now()->subDays($days_after)->toDateString();
-        $customers = Customer::whereStatus('waiting')->whereDate('date', '<=', $cutoffDate)->get();
+        $customers = Customer::whereNot('status', 'sended')->whereDate('date', '<=', $cutoffDate)->get();
         $phones = implode(',', $customers->pluck('phone')->toArray());
         $isValid = $this->isWhatsappBulk($phones);
         $valid = $isValid->registered;
