@@ -29,6 +29,17 @@ class CustomerController extends Controller
     }
 
     /**
+     * Get all message history
+     */
+    #[Group('Customer')]
+    public function messages()
+    {
+        $customers = Customer::with('message')->get();
+
+        return $this->success(CustomerResource::collection($customers));
+    }
+
+    /**
      * Get customer data by order ID
      *
      * @param  string  $order_id  ex. ORD-250910-001
