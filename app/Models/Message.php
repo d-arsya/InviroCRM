@@ -30,5 +30,14 @@ class Message extends Model
                     ->update(['default' => false]);
             }
         });
+        static::updated(function ($message) {
+            $customers = Customer::whereNot('status', 'sended')->get();
+            foreach ($customers as $customer) {
+                $customer->update(['message_id' => $message->id, 'message_value' => [
+                    'text' => $message->text,
+                    'title' => $message->title,
+                ]]);
+            }
+        });
     }
 }
