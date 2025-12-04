@@ -13,8 +13,8 @@ class CustomerSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($daysAgo = 7; $daysAgo >= 0; $daysAgo--) {
-            Customer::factory(4)->create([
+        for ($daysAgo = 7; $daysAgo >= 1; $daysAgo--) {
+            Customer::factory(fake()->numberBetween(5, 30))->create([
                 'date' => now()->subDays($daysAgo)->toDateString(),
             ]);
         }

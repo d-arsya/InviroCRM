@@ -5,10 +5,10 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'docs');
-Route::get('reset', function () {
-    Artisan::call('migrate:fresh --seed');
+// Route::get('reset', function () {
+//     Artisan::call('migrate:fresh --seed');
 
-    return 'reset success';
-});
+//     return 'reset success';
+// });
 Scramble::registerUiRoute('docs');
 Scramble::registerJsonSpecificationRoute('api.json');

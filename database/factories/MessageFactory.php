@@ -16,7 +16,7 @@ class MessageFactory extends Factory
      */
     public function definition(): array
     {
-        $text = fake()->sentence(6).' {nama}\n\n'.fake()->paragraph();
+        $text = fake()->sentence(6) . ' {nama}\n\n' . fake()->paragraph();
 
         return [
             'title' => fake()->sentence(4),
