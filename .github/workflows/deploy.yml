@@ -28,4 +28,3 @@ jobs:
             git pull
             rm -rf vendor
             ../../composer install
-            php artisan migrate:fresh --seed
