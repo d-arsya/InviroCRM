@@ -14,46 +14,47 @@ class MessageSeeder extends Seeder
     {
         $messages = [
             [
-                "title" => "Selamat Datang di INVIRO",
-                "text"  => "Halo {nama}, terima kasih telah mengunjungi INVIRO. Kami siap membantu kebutuhan pengolahan air dan sistem RO untuk rumah, kantor, dan industri."
+                "title" => "Terima Kasih, {nama}",
+                "text"  => "Halo {nama}, terima kasih telah berbelanja. Jika persediaan Anda mulai menipis, kami siap mengantarkan pesanan berikutnya kapan saja."
             ],
             [
-                "title" => "Penawaran Gratis Konsultasi",
-                "text"  => "{nama}, butuh rekomendasi sistem water treatment terbaik? Hubungi kami untuk konsultasi gratis — tim INVIRO siap membantu memilih solusi sesuai kebutuhan Anda."
+                "title" => "Siap Isi Ulang Kapan Pun",
+                "text"  => "{nama}, jika Anda membutuhkan isi ulang atau ingin memesan produk tambahan, cukup balas pesan ini. Tim kami siap melayani."
             ],
             [
-                "title" => "Special Promo Pemasangan Depot Air",
-                "text"  => "{nama}, nikmati promo khusus pemasangan depot air minum isi ulang bulan ini. Hubungi kami segera sebelum promo berakhir!"
+                "title" => "Butuh Pesanan Tambahan?",
+                "text"  => "Halo {nama}, terima kasih atas pembelian Anda kemarin. Jika stok sudah mulai berkurang, kami siap mengirimkan pesanan baru."
             ],
             [
-                "title" => "Layanan Rumah Tangga & Komersial",
-                "text"  => "Kami siap membantu Anda, {nama}. INVIRO menyediakan layanan pengolahan air untuk rumah tangga, kantor, pabrik, sekolah, dan usaha lainnya."
+                "title" => "Kami Siap Antar Lagi",
+                "text"  => "{nama}, jika Anda membutuhkan pembelian berikutnya, kami siap membantu dengan cepat dan mudah. Pesan kapan saja melalui pesan ini."
             ],
             [
-                "title" => "Jaminan Kualitas INVIRO",
-                "text"  => "{nama}, semua instalasi dan produk INVIRO dikerjakan oleh teknisi profesional dengan standar kualitas terbaik."
+                "title" => "Jangan Ragu untuk Reorder",
+                "text"  => "Halo {nama}, jika kebutuhan air minum atau gas Anda sudah hampir habis, Anda bisa melakukan repeat order kapan saja. Kami siap melayani."
             ],
             [
-                "title" => "Pemesanan Mudah & Cepat",
-                "text"  => "Hai {nama}, butuh alat purifikasi atau sistem RO? Pesan sekarang — proses cepat dan pengiriman ke seluruh Indonesia."
+                "title" => "Pesan Lagi Lebih Mudah",
+                "text"  => "{nama}, terima kasih telah memilih layanan kami. Untuk pemesanan ulang, cukup kirimkan pesan 'Order' dan tim kami akan memprosesnya."
             ],
             [
-                "title" => "Servis & Maintenance Berkala",
-                "text"  => "{nama}, pastikan kualitas air tetap optimal. Daftarkan layanan servis berkala dari INVIRO untuk pengecekan sistem Anda."
+                "title" => "Ingat, Kami Selalu Tersedia",
+                "text"  => "Halo {nama}, jika Anda membutuhkan refill, galon tambahan, atau produk lain, cukup hubungi kami. Kami siap antar dengan cepat."
             ],
             [
-                "title" => "Dukungan Pelanggan 24/7",
-                "text"  => "Kami siap membantu kapan saja, {nama}. Silakan hubungi tim support INVIRO jika mengalami kendala atau butuh informasi."
+                "title" => "Siap Antar Seperti Biasa",
+                "text"  => "{nama}, kami selalu siap mengantarkan kebutuhan harian Anda. Jika sudah mendekati habis, tinggal pesan kembali saja."
             ],
             [
-                "title" => "Testimoni Pelanggan",
-                "text"  => "Ingin melihat pengalaman pelanggan lain, {nama}? Banyak klien telah merasakan manfaat sistem air dari INVIRO."
+                "title" => "Kapan Pun Anda Butuh",
+                "text"  => "Halo {nama}, kami berharap produk kami membantu kebutuhan Anda. Jika butuh isi ulang atau produk tambahan, tinggal balas pesan ini."
             ],
             [
-                "title" => "Peluang Kemitraan",
-                "text"  => "{nama}, jika Anda berminat menjadi mitra atau agen INVIRO, kami siap memberikan informasi peluang bisnis terbaik."
+                "title" => "Terima Kasih & Yuk Order Lagi",
+                "text"  => "{nama}, terima kasih atas pembelian Anda. Jika ingin melakukan pembelian ulang, kami siap memproses pesanan kapan pun Anda butuh."
             ],
         ];
+
 
         foreach ($messages as $message) {
             Message::factory()->create($message);
